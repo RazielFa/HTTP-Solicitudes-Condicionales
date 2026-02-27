@@ -4,12 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos</title>
-</head>
+    <link rel="stylesheet" href="styles.css"> </head>
 <body>
     <h1>Last-Modified Demo</h1>
-    <button id="fetchData">Obtener datos de producto</button>
-    <div id="dataContainer"></div>
+    
+    <button id="fetchData">Obtener datos de producto (GET)</button>
+    <div id="dataContainer" style="margin-bottom: 30px; padding: 10px; border: 1px solid #ccc;"></div>
+
+    <hr>
+
+    <h2>Modificar Producto (PUT)</h2>
+    <div>
+        <input type="text" id="newName" placeholder="Nuevo Nombre del Producto"><br><br>
+        <input type="number" id="newPrice" placeholder="Nuevo Precio"><br><br>
+        <input type="text" id="newMessage" placeholder="Nuevo Mensaje"><br><br>
+        <button id="updateData">Actualizar Producto en el Servidor</button>
+    </div>
+    <div id="updateStatus"></div>
+
     <script src="conditionalproduct.js"></script>
-</body>
 </body>
 </html>

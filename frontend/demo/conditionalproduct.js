@@ -46,3 +46,36 @@ document.getElementById('fetchData').addEventListener('click', () => {
         console.error('Error fetching data:', error);
     });
 });
+
+document.getElementById('updateData').addEventListener('click', () => {
+    const name = document.getElementById('newName').value;
+    const price = document.getElementById('newPrice').value;
+    const message = document.getElementById('newMessage').value;
+
+    const updatedData = {};
+    if (name) updatedData.name = name;
+    if (price) updatedData.price = parseFloat(price);
+    if (message) updatedData.message = message;
+
+    fetch(`http://${urlBase}/product`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.success) {
+            document.getElementById('updateStatus').innerHTML = `
+                <p style="color: purple;">¡${data.message}! (Haz clic en 'Obtener datos' para ver cómo se rompe el caché 304 y descarga el nuevo contenido con un 200 OK)</p>
+            `;
+            document.getElementById('newName').value = '';
+            document.getElementById('newPrice').value = '';
+            document.getElementById('newMessage').value = '';
+        }
+    })
+    .catch(error => {
+        console.error('Error al hacer PUT:', error);
+    });
+});
